@@ -1,0 +1,326 @@
+/* Página principal: riel | contenido | chat de Verdi */
+.app {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr) 380px;
+    min-height: 100vh;
+}
+
+/* ---------- Riel ---------- */
+.riel {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem 1.1rem;
+    border-right: 1px solid var(--linea);
+    background: var(--fondo);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: 0 .4rem;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -.02em;
+    text-decoration: none;
+    color: var(--tinta);
+}
+.riel-menu { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+.riel-menu a {
+    display: block;
+    padding: .55rem .7rem;
+    border-radius: var(--radio-s);
+    color: var(--tinta-suave);
+    font-weight: 500;
+    font-size: .95rem;
+    text-decoration: none;
+}
+.riel-menu a:hover { background: var(--superficie); color: var(--tinta); }
+.riel-whatsapp {
+    margin-top: auto;
+    padding: 1rem;
+    border-radius: var(--radio-m);
+    background: var(--superficie);
+    font-size: .87rem;
+    color: var(--tinta-suave);
+}
+.riel-whatsapp p { margin: 0 0 .85rem; }
+.riel-whatsapp strong { color: var(--tinta); }
+.riel-whatsapp .boton { width: 100%; font-size: .88rem; }
+.riel-admin { padding: 0 .4rem; font-size: .85rem; color: var(--tinta-suave); }
+.riel-admin:hover { color: var(--tinta); }
+
+/* ---------- Contenido ---------- */
+.contenido {
+    padding: 2.5rem clamp(1.25rem, 3vw, 3rem) 4rem;
+    display: grid;
+    gap: 4rem;
+    align-content: start;
+}
+
+.portada { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 2.5rem; align-items: center; }
+.portada h1 { font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.02; }
+.portada-texto > p { max-width: 32rem; margin: 1rem 0 1.75rem; font-size: 1.1rem; color: var(--tinta-suave); }
+.portada-foto { margin: 0; aspect-ratio: 4 / 5; max-height: 480px; justify-self: end; width: 100%; }
+.portada-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radio-l); display: block; }
+
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    max-width: 36rem;
+    padding: .4rem .4rem .4rem 1rem;
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+    background: var(--fondo);
+    box-shadow: 0 1px 2px rgba(23, 33, 27, .04);
+}
+.buscador:focus-within { border-color: var(--verde); box-shadow: 0 0 0 3px var(--verde-claro); }
+.buscador > svg { width: 20px; flex: none; fill: var(--tinta-suave); }
+.buscador input { flex: 1; min-width: 0; padding: .55rem .25rem; border: 0; background: transparent; font-size: 1rem; }
+.buscador input:focus { outline: none; }
+
+.sugerencias { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-top: .9rem; font-size: .87rem; color: var(--tinta-suave); }
+.sugerencia {
+    padding: .3rem .75rem;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    background: var(--fondo);
+    font-size: .85rem;
+    cursor: pointer;
+}
+.sugerencia:hover { border-color: var(--verde); color: var(--verde); }
+
+.cifras { display: flex; gap: 2.5rem; margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--linea); max-width: 36rem; }
+.cifras div { display: flex; flex-direction: column-reverse; }
+.cifras dt { font-size: .85rem; color: var(--tinta-suave); }
+.cifras dd { margin: 0; font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; }
+
+.seccion-encabezado { margin-bottom: 1.5rem; }
+.seccion-encabezado h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+.seccion-encabezado p { margin: .35rem 0 0; color: var(--tinta-suave); }
+
+/* Tarjetas de material con foto */
+.materiales { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.5rem 1rem; }
+.material {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+.material img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radio-m);
+    margin-bottom: .55rem;
+    transition: transform .25s ease;
+}
+.material:hover img { transform: scale(1.02); }
+.material-nombre { font-weight: 700; }
+.material-destino { display: flex; align-items: center; gap: .4rem; font-size: .87rem; color: var(--tinta-suave); }
+.punto-color { width: 9px; height: 9px; border-radius: 50%; background: var(--color); flex: none; }
+.material-alerta { color: var(--alerta); font-weight: 600; }
+
+/* Mapa y lista de puntos */
+.puntos { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); gap: 1rem; }
+.mapa { min-height: 440px; border-radius: var(--radio-l); border: 1px solid var(--linea); overflow: hidden; z-index: 0; }
+.puntos-lista { display: flex; flex-direction: column; min-height: 0; max-height: 440px; }
+.puntos-controles { display: flex; gap: .5rem; margin-bottom: .75rem; }
+.puntos-controles select {
+    flex: 1;
+    min-width: 0;
+    padding: .6rem .75rem;
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    background: var(--fondo);
+}
+#lista-puntos { list-style: none; margin: 0; padding: 0 .25rem 0 0; overflow-y: auto; display: grid; gap: .5rem; }
+.punto {
+    padding: .85rem 1rem;
+    border-radius: var(--radio-m);
+    border: 1px solid var(--linea);
+    background: var(--fondo);
+    cursor: pointer;
+}
+.punto:hover, .punto.activo { border-color: var(--verde); }
+.punto h3 { font-size: .97rem; letter-spacing: 0; }
+.punto p { margin: .15rem 0 0; font-size: .85rem; color: var(--tinta-suave); }
+.punto .distancia { float: right; font-weight: 700; color: var(--verde); font-size: .85rem; }
+.punto-materiales { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .5rem; }
+.punto-materiales .punto-color { width: 10px; height: 10px; }
+
+.marcador {
+    width: 22px; height: 22px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: var(--verde);
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+.leaflet-popup-content { font-family: var(--fuente); }
+
+/* Separar en casa */
+.separar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.separar-item { padding: 1.1rem 1.2rem; border-radius: var(--radio-m); background: var(--superficie); border-top: 4px solid var(--color); }
+.separar-item h3 { font-size: 1rem; letter-spacing: 0; }
+.separar-item p { margin: .3rem 0 0; color: var(--tinta-suave); font-size: .93rem; }
+
+/* ---------- Verdi (chat) ---------- */
+.verdi {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--fondo);
+    border-left: 1px solid var(--linea);
+}
+.verdi-encabezado { display: flex; align-items: center; gap: .75rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--linea); }
+.verdi-encabezado img { border-radius: 12px; }
+.verdi-encabezado h2 { font-size: 1.05rem; letter-spacing: 0; }
+.verdi-encabezado p { display: flex; align-items: center; gap: .35rem; margin: 0; font-size: .82rem; color: var(--tinta-suave); }
+.en-linea { width: 7px; height: 7px; border-radius: 50%; background: var(--whatsapp); }
+.verdi-cerrar { display: none; margin-left: auto; padding: .3rem; border: 0; background: none; cursor: pointer; }
+.verdi-cerrar svg { width: 22px; fill: var(--tinta-suave); }
+
+.verdi-mensajes { flex: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: .7rem; background: var(--superficie); }
+
+.mensaje { max-width: 88%; padding: .7rem .95rem; border-radius: var(--radio-m); font-size: .93rem; line-height: 1.5; }
+.mensaje p { margin: 0; }
+.mensaje-bot { align-self: flex-start; background: var(--fondo); border: 1px solid var(--linea); border-bottom-left-radius: 4px; }
+.mensaje-usuario { align-self: flex-end; background: var(--verde); color: #fff; border-bottom-right-radius: 4px; }
+.mensaje img { display: block; width: 100%; margin: .65rem 0 .1rem; border-radius: var(--radio-s); cursor: zoom-in; }
+.mensaje-puntos { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .35rem; }
+.mensaje-puntos button {
+    width: 100%;
+    padding: .5rem .65rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-s);
+    background: var(--superficie);
+    text-align: left;
+    font-size: .85rem;
+    cursor: pointer;
+}
+.mensaje-puntos button:hover { border-color: var(--verde); }
+.mensaje-puntos strong { display: block; }
+
+.escribiendo { display: inline-flex; gap: 4px; padding: .2rem 0; }
+.escribiendo span { width: 6px; height: 6px; border-radius: 50%; background: var(--tinta-suave); opacity: .35; animation: punto 1s infinite; }
+.escribiendo span:nth-child(2) { animation-delay: .15s; }
+.escribiendo span:nth-child(3) { animation-delay: .3s; }
+@keyframes punto { 50% { opacity: 1; } }
+
+.opciones { display: flex; flex-wrap: wrap; gap: .4rem; align-self: flex-start; max-width: 100%; }
+.opcion {
+    padding: .4rem .8rem;
+    border: 1px solid var(--verde);
+    border-radius: 999px;
+    background: var(--fondo);
+    color: var(--verde);
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.opcion:hover { background: var(--verde); color: #fff; }
+
+.verdi-entrada { display: flex; gap: .5rem; padding: .85rem 1rem; border-top: 1px solid var(--linea); }
+.verdi-entrada input {
+    flex: 1;
+    min-width: 0;
+    padding: .65rem .9rem;
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    background: var(--fondo);
+}
+.verdi-entrada input:focus { outline: none; border-color: var(--verde); }
+.verdi-entrada button {
+    flex: none;
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border: 0;
+    border-radius: 10px;
+    background: var(--verde);
+    cursor: pointer;
+}
+.verdi-entrada button:hover { background: var(--verde-hover); }
+.verdi-entrada button svg { width: 18px; fill: #fff; }
+.verdi-whatsapp {
+    display: flex; align-items: center; justify-content: center; gap: .4rem;
+    padding: 0 1rem 1rem;
+    font-size: .83rem;
+    color: var(--tinta-suave);
+}
+.verdi-whatsapp svg { width: 16px; height: 16px; fill: var(--whatsapp); }
+
+.abrir-verdi { display: none; }
+
+/* ---------- Pantallas medianas: Verdi se abre como panel ---------- */
+@media (max-width: 1180px) {
+    .app { grid-template-columns: 220px minmax(0, 1fr); }
+    .verdi {
+        position: fixed;
+        z-index: 1000;
+        right: 0; top: 0;
+        width: min(400px, 100%);
+        box-shadow: -12px 0 40px rgba(23, 33, 27, .15);
+        transform: translateX(105%);
+        transition: transform .25s ease;
+    }
+    .verdi.abierto { transform: none; }
+    .verdi-cerrar { display: block; }
+    .abrir-verdi {
+        position: fixed;
+        z-index: 999;
+        right: 1.25rem; bottom: 1.25rem;
+        display: flex; align-items: center; gap: .55rem;
+        padding: .5rem 1.1rem .5rem .5rem;
+        border: 0;
+        border-radius: 14px;
+        background: var(--verde);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 8px 24px rgba(23, 33, 27, .2);
+        cursor: pointer;
+    }
+    .abrir-verdi img { border-radius: 8px; }
+    .portada { grid-template-columns: 1fr; }
+    .portada-foto { aspect-ratio: 16 / 9; max-height: 320px; justify-self: stretch; }
+}
+
+/* ---------- Celular: el riel pasa arriba ---------- */
+@media (max-width: 820px) {
+    .app { grid-template-columns: 1fr; }
+    .riel {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .75rem;
+        padding: 1rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--linea);
+    }
+    .riel-menu { display: flex; overflow-x: auto; width: 100%; order: 3; }
+    .riel-menu a { white-space: nowrap; font-size: .88rem; }
+    .riel-whatsapp { margin: 0 0 0 auto; padding: 0; background: none; }
+    .riel-whatsapp p { display: none; }
+    .riel-whatsapp .boton { padding: .45rem .8rem; }
+    .riel-admin { display: none; }
+    .contenido { padding: 1.75rem 1rem 6rem; gap: 3rem; }
+    .buscador { flex-wrap: wrap; }
+    .buscador .boton { width: 100%; }
+    .cifras { gap: 1.5rem; }
+    .materiales { grid-template-columns: repeat(2, 1fr); }
+    .puntos { grid-template-columns: 1fr; }
+    .mapa { min-height: 320px; }
+}

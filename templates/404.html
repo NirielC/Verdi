@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include '_head.html' %}
+    <title>Página no encontrada · ReVerde</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css', v=version) }}">
+</head>
+<body>
+    <main class="login">
+        <figure class="login-foto">
+            <img src="{{ url_for('static', filename='img/fotos/portada.jpg') }}" alt="Contenedores de reciclaje de colores">
+        </figure>
+        <div class="login-lado">
+            <div class="login-form">
+                <p class="codigo-error">404</p>
+                <h1>Esta página no existe</h1>
+                <p>Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+                <a class="boton" href="{{ url_for('index') }}">Ir al inicio</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

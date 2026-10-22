@@ -1,0 +1,49 @@
+<div class="tabla-envoltura">
+<table class="tabla">
+    <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Canal</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Mensaje y respuesta</th>
+            <th scope="col">Intención</th>
+            <th scope="col">Material</th>
+            <th scope="col"><span class="visualmente-oculto">Acciones</span></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in interacciones %}
+        <tr class="{% if i.estado == 'revisada' %}revisada{% endif %}">
+            <td class="fecha">{{ i.fecha.strftime('%d/%m/%Y') }}<br><small>{{ i.fecha.strftime('%H:%M') }}</small></td>
+            <td><span class="etiqueta etiqueta-{{ i.canal }}">{{ 'WhatsApp' if i.canal == 'whatsapp' else 'Web' }}</span></td>
+            <td class="usuario">{{ i.usuario }}</td>
+            <td class="conversacion">
+                <p class="pregunta">{{ i.mensaje }}</p>
+                <details>
+                    <summary>Respuesta de Verdi</summary>
+                    <p>{{ i.respuesta }}</p>
+                </details>
+            </td>
+            <td>
+                <span class="{% if i.intencion == 'no_entendido' %}texto-alerta{% endif %}">{{ nombres_intencion.get(i.intencion, i.intencion) }}</span>
+                <br><small>{{ (i.confianza * 100)|round|int }} % de confianza</small>
+            </td>
+            <td>{{ i.material_nombre or '—' }}</td>
+            <td class="acciones">
+                <form method="post" action="{{ url_for('revisar_interaccion', id_interaccion=i.id) }}">
+                    <button type="submit" class="icono" title="{{ 'Marcar como nueva' if i.estado == 'revisada' else 'Marcar como revisada' }}">
+                        {{ '↺' if i.estado == 'revisada' else '✓' }}
+                    </button>
+                </form>
+                <form method="post" action="{{ url_for('eliminar_interaccion', id_interaccion=i.id) }}"
+                      onsubmit="return confirm('¿Eliminar esta interacción? No se puede deshacer.')">
+                    <button type="submit" class="icono icono-peligro" title="Eliminar">✕</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="7" class="vacio">No hay interacciones con estos filtros.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>

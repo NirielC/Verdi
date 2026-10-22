@@ -1,0 +1,84 @@
+{% extends 'admin/base_admin.html' %}
+{% block titulo %}Resumen{% endblock %}
+{% block contenido %}
+{% set canales = {} %}
+{% for c in resumen.por_canal %}{% set _ = canales.update({c.canal: c.n}) %}{% endfor %}
+
+<header class="admin-encabezado">
+    <h1>Resumen</h1>
+    <a class="boton" href="{{ url_for('admin_reporte') }}">Descargar reporte PDF</a>
+</header>
+
+<dl class="cifras">
+    <div class="cifra cifra-grande"><dt>Interacciones con Verdi</dt><dd>{{ resumen.total }}</dd></div>
+    <div class="cifra"><dt>Hoy</dt><dd>{{ resumen.hoy }}</dd></div>
+    <div class="cifra"><dt>Usuarios distintos</dt><dd>{{ resumen.usuarios }}</dd></div>
+    <div class="cifra"><dt>Sin revisar</dt><dd>{{ resumen.nuevas }}</dd></div>
+    <div class="cifra{% if resumen.sin_entender %} cifra-alerta{% endif %}"><dt>No entendidas</dt><dd>{{ resumen.sin_entender }}</dd></div>
+</dl>
+
+<div class="tableros">
+    <section class="tablero">
+        <h2>Por canal</h2>
+        {% set total = resumen.total or 1 %}
+        <div class="canales">
+            <div class="canal-barra">
+                <span class="canal-web" style="width: {{ (canales.get('web', 0) / total * 100)|round(1) }}%"></span>
+                <span class="canal-whatsapp" style="width: {{ (canales.get('whatsapp', 0) / total * 100)|round(1) }}%"></span>
+            </div>
+            <p><span class="punto-color canal-web"></span> Web <strong>{{ canales.get('web', 0) }}</strong></p>
+            <p><span class="punto-color canal-whatsapp"></span> WhatsApp <strong>{{ canales.get('whatsapp', 0) }}</strong></p>
+        </div>
+
+        <h2>Últimos 14 días</h2>
+        {% set maximo = (resumen.por_dia|map(attribute='n')|max) if resumen.por_dia else 1 %}
+        <div class="por-dia">
+            {% for d in resumen.por_dia %}
+            <div class="dia" title="{{ d.dia.strftime('%d/%m') }}: {{ d.n }}">
+                <span style="height: {{ (d.n / maximo * 100)|round }}%"></span>
+                <small>{{ d.dia.strftime('%d/%m') }}</small>
+            </div>
+            {% else %}
+            <p class="vacio">Todavía no hay interacciones. Escríbele a Verdi desde el sitio o WhatsApp.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="tablero">
+        <h2>Materiales más consultados</h2>
+        {% set maximo = (resumen.por_material|map(attribute='n')|max) if resumen.por_material else 1 %}
+        <ul class="barras">
+            {% for m in resumen.por_material %}
+            <li>
+                <span>{{ m.nombre }}</span>
+                <span class="barra"><span style="width: {{ (m.n / maximo * 100)|round }}%; background: {{ m.color }}"></span></span>
+                <strong>{{ m.n }}</strong>
+            </li>
+            {% else %}
+            <li class="vacio">Aún nadie ha preguntado por un material.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Intenciones</h2>
+        {% set maximo = (resumen.por_intencion|map(attribute='n')|max) if resumen.por_intencion else 1 %}
+        <ul class="barras">
+            {% for i in resumen.por_intencion %}
+            <li>
+                <span>{{ nombres_intencion.get(i.intencion, i.intencion) }}</span>
+                <span class="barra"><span class="{% if i.intencion == 'no_entendido' %}barra-alerta{% endif %}" style="width: {{ (i.n / maximo * 100)|round }}%"></span></span>
+                <strong>{{ i.n }}</strong>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+
+<section class="tablero">
+    <header class="tablero-encabezado">
+        <h2>Lo último que le preguntaron</h2>
+        <a href="{{ url_for('admin_interacciones') }}">Ver todas</a>
+    </header>
+    {% set interacciones = recientes %}
+    {% include 'admin/_tabla.html' %}
+</section>
+{% endblock %}

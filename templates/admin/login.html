@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include '_head.html' %}
+    <title>Entrar · Panel ReVerde</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css', v=version) }}">
+</head>
+<body>
+    <main class="login">
+        <figure class="login-foto">
+            <img src="{{ url_for('static', filename='img/fotos/reciclaje.jpg') }}" alt="Contenedor azul con el símbolo de reciclaje">
+        </figure>
+        <div class="login-lado">
+            <form method="post" class="login-form">
+                <a class="admin-logo" href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='img/hoja.svg') }}" alt="" width="34" height="34"> ReVerde
+                </a>
+                <h1>Panel de administración</h1>
+                <p>Entra para revisar las conversaciones de Verdi y gestionar los puntos de acopio.</p>
+                {% with mensajes = get_flashed_messages() %}
+                    {% for m in mensajes %}<p class="aviso aviso-error" role="alert">{{ m }}</p>{% endfor %}
+                {% endwith %}
+                <label>Usuario
+                    <input type="text" name="usuario" autocomplete="username" required autofocus>
+                </label>
+                <label>Contraseña
+                    <input type="password" name="password" autocomplete="current-password" required>
+                </label>
+                <button class="boton" type="submit">Entrar</button>
+                <a class="volver" href="{{ url_for('index') }}">Volver al sitio</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

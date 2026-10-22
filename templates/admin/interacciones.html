@@ -1,0 +1,57 @@
+{% extends 'admin/base_admin.html' %}
+{% block titulo %}Interacciones{% endblock %}
+{% block contenido %}
+<header class="admin-encabezado">
+    <h1>Interacciones</h1>
+    <a class="boton" href="{{ url_for('admin_reporte', **filtros) }}">Descargar PDF{% if filtros %} filtrado{% endif %}</a>
+</header>
+
+<form class="filtros" method="get">
+    <label>Buscar
+        <input type="search" name="buscar" value="{{ filtros.buscar }}" placeholder="Mensaje o usuario">
+    </label>
+    <label>Canal
+        <select name="canal">
+            <option value="">Todos</option>
+            <option value="web" {% if filtros.canal == 'web' %}selected{% endif %}>Web</option>
+            <option value="whatsapp" {% if filtros.canal == 'whatsapp' %}selected{% endif %}>WhatsApp</option>
+        </select>
+    </label>
+    <label>Intención
+        <select name="intencion">
+            <option value="">Todas</option>
+            {% for clave, nombre in nombres_intencion.items() %}
+            <option value="{{ clave }}" {% if filtros.intencion == clave %}selected{% endif %}>{{ nombre }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Material
+        <select name="material">
+            <option value="">Todos</option>
+            {% for m in materiales %}
+            <option value="{{ m.clave }}" {% if filtros.material == m.clave %}selected{% endif %}>{{ m.nombre }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Estado
+        <select name="estado">
+            <option value="">Todos</option>
+            <option value="nueva" {% if filtros.estado == 'nueva' %}selected{% endif %}>Sin revisar</option>
+            <option value="revisada" {% if filtros.estado == 'revisada' %}selected{% endif %}>Revisadas</option>
+        </select>
+    </label>
+    <label>Desde
+        <input type="date" name="desde" value="{{ filtros.desde }}">
+    </label>
+    <label>Hasta
+        <input type="date" name="hasta" value="{{ filtros.hasta }}">
+    </label>
+    <div class="filtros-acciones">
+        <button class="boton" type="submit">Filtrar</button>
+        {% if filtros %}<a href="{{ url_for('admin_interacciones') }}">Quitar filtros</a>{% endif %}
+    </div>
+</form>
+
+<p class="conteo">{{ interacciones|length }} interacciones{% if interacciones|length == 300 %} (se muestran las 300 más recientes; el PDF incluye todas){% endif %}</p>
+{% include 'admin/_tabla.html' %}
+{% endblock %}

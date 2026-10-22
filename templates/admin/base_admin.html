@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include '_head.html' %}
+    <title>{% block titulo %}Panel{% endblock %} · Panel ReVerde</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css', v=version) }}">
+</head>
+<body>
+<div class="admin">
+    <nav class="admin-riel" aria-label="Panel">
+        <a class="admin-logo" href="{{ url_for('admin_resumen') }}">
+            <img src="{{ url_for('static', filename='img/hoja.svg') }}" alt="" width="34" height="34">
+            <span>ReVerde <small>Panel de administración</small></span>
+        </a>
+        <ul>
+            <li><a href="{{ url_for('admin_resumen') }}" {% if activo == 'resumen' %}aria-current="page"{% endif %}>Resumen</a></li>
+            <li><a href="{{ url_for('admin_interacciones') }}" {% if activo == 'interacciones' %}aria-current="page"{% endif %}>Interacciones</a></li>
+            <li><a href="{{ url_for('admin_puntos') }}" {% if activo == 'puntos' %}aria-current="page"{% endif %}>Puntos de acopio</a></li>
+        </ul>
+        <div class="admin-usuario">
+            <span>{{ session.admin }}</span>
+            <a href="{{ url_for('index') }}">Ver sitio</a>
+            <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        </div>
+    </nav>
+    <main class="admin-contenido">
+        {% with mensajes = get_flashed_messages() %}
+            {% for m in mensajes %}<p class="aviso" role="status">{{ m }}</p>{% endfor %}
+        {% endwith %}
+        {% block contenido %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

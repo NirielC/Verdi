@@ -1,0 +1,139 @@
+{
+    "intenciones": [
+        {
+            "etiqueta": "saludo",
+            "patrones": ["Hola", "Buenas", "Hola Verdi", "Buenos días", "Buenas tardes", "Buenas noches", "Buen día", "Saludos", "Hey", "Hola, necesito ayuda", "Qué onda", "Hola, quiero reciclar", "Ola", "Holi", "Hola de nuevo", "Hola otra vez"],
+            "respuestas": [
+                "¡Hola! Soy *Verdi*, tu asistente de reciclaje. Cuéntame qué quieres tirar y te digo dónde va, cómo prepararlo y dónde llevarlo.",
+                "¡Hola, qué gusto saludarte! Soy *Verdi*. Pregúntame por cualquier residuo, desde una botella hasta unas pilas viejas, y lo resolvemos juntos.",
+                "¡Buenas! Aquí *Verdi*. Si tienes algo que no sabes dónde tirar, escríbemelo con tus palabras y te ayudo."
+            ]
+        },
+        {
+            "etiqueta": "estado",
+            "patrones": ["Cómo estás", "Qué tal estás", "Cómo te va", "Todo bien", "Cómo has estado", "Qué tal tu día", "Cómo andas", "Estás bien", "Qué tal estás Verdi"],
+            "respuestas": [
+                "¡Muy bien, gracias por preguntar! Siempre contento cuando alguien quiere reciclar. ¿Y tú cómo estás? Si tienes algo por separar, aquí estoy.",
+                "Todo bien por aquí, gracias. Me alegra que me escribas. ¿Hay algún residuo con el que te pueda ayudar hoy?"
+            ]
+        },
+        {
+            "etiqueta": "despedida",
+            "patrones": ["Adiós", "Hasta luego", "Nos vemos", "Bye", "Chao", "Gracias, adiós", "Eso es todo", "Ya me voy", "Hasta pronto", "Finalizar", "Terminar", "Salir", "Terminar conversación", "Ya terminé", "Eso sería todo", "Cerrar"],
+            "respuestas": [
+                "Listo, terminamos por ahora. Gracias por tomarte el tiempo de separar tus residuos, de verdad hace la diferencia. Cuando quieras volver, escribe *hola*.",
+                "¡Hasta pronto! Fue un gusto ayudarte. Si más adelante te surge otra duda, escríbeme *hola* y seguimos."
+            ]
+        },
+        {
+            "etiqueta": "agradecimiento",
+            "patrones": ["Gracias", "Muchas gracias", "Te agradezco", "Gracias por tu ayuda", "Me sirvió, gracias", "Excelente, gracias", "Muy amable", "Perfecto gracias", "Va, gracias", "Ok gracias", "Mil gracias", "Me ayudaste mucho"],
+            "respuestas": [
+                "¡Con mucho gusto! Me alegra que te haya servido. ¿Hay algo más que quieras consultar?",
+                "Para eso estoy. Gracias a ti por reciclar. Si tienes otro residuo, solo escríbelo."
+            ]
+        },
+        {
+            "etiqueta": "afirmacion",
+            "patrones": ["Sí", "Si", "Claro", "Dale", "Ok", "Okey", "Va", "Sale", "De acuerdo", "Está bien", "Perfecto", "Genial", "Me parece", "Sí por favor", "Bueno"],
+            "respuestas": [
+                "¡Perfecto! Escríbeme el residuo que quieras consultar o elige una opción.",
+                "Muy bien. ¿Con qué residuo seguimos?"
+            ]
+        },
+        {
+            "etiqueta": "negacion",
+            "patrones": ["No", "No gracias", "Nada", "Nada más", "No por ahora", "Así está bien", "No necesito nada", "Ninguno", "Todavía no"],
+            "respuestas": [
+                "Está bien, sin problema. Aquí estaré cuando lo necesites.",
+                "De acuerdo. Si más tarde te surge una duda, escríbeme sin pena."
+            ]
+        },
+        {
+            "etiqueta": "frustracion",
+            "patrones": ["No entiendo", "No me sirve", "No funciona", "Eso no es lo que pregunté", "No me ayudaste", "Estás mal", "Qué difícil", "No sé qué hacer", "Me confundí", "No me entiendes", "Eres inútil", "Esto es complicado"],
+            "respuestas": [
+                "Perdona, quiero ayudarte bien. Probemos de otra forma: escríbeme solo el nombre del objeto, por ejemplo «lata», «cargador» o «cáscaras», y te digo qué hacer.",
+                "Entiendo que puede ser confuso, separar la basura no siempre es obvio. Dime qué tienes en la mano y vamos paso a paso."
+            ]
+        },
+        {
+            "etiqueta": "identidad",
+            "patrones": ["Quién eres", "Cómo te llamas", "Qué eres", "Eres un robot", "Eres una persona", "Cuál es tu nombre", "Quién te creó", "Qué es Verdi", "Qué es ReVerde"],
+            "respuestas": [
+                "Soy *Verdi*, el asistente de reciclaje de ReVerde. Te ayudo a clasificar residuos, a prepararlos para reciclar y a encontrar puntos de recolección en El Salvador.",
+                "Me llamo *Verdi*. Soy un asistente virtual entrenado para resolver dudas de reciclaje: qué va en cada contenedor, qué hacer con residuos especiales y dónde llevarlos."
+            ]
+        },
+        {
+            "etiqueta": "ayuda",
+            "patrones": ["Qué puedes hacer", "En qué me ayudas", "Ayuda", "Menú", "Menu", "Opciones", "Qué sabes hacer", "Cómo funcionas", "Qué te puedo preguntar", "Inicio", "Empezar", "Necesito ayuda"],
+            "respuestas": [
+                "Te puedo ayudar con esto:\n• En qué contenedor va un residuo\n• Cómo prepararlo para reciclar\n• Ideas para reutilizarlo\n• Puntos de recolección cercanos\n• Residuos especiales como pilas, aceite o electrónicos\n\nEscribe el nombre del objeto o elige una opción."
+            ]
+        },
+        {
+            "etiqueta": "lista_materiales",
+            "patrones": ["Otro material", "Ver materiales", "Qué materiales conoces", "Lista de materiales", "Qué se puede reciclar", "Qué cosas se reciclan", "Clasificar residuo", "Quiero clasificar un residuo", "Materiales reciclables", "Qué tipos de residuos hay"],
+            "respuestas": [
+                "Elige el material que quieres consultar, o escríbelo con tus palabras, por ejemplo «botella de vidrio» o «cargador viejo».",
+                "¿Qué tienes para separar? Elige un material o descríbemelo como te salga."
+            ]
+        },
+        {
+            "etiqueta": "consulta_material",
+            "patrones": ["Dónde tiro una botella", "Se recicla el cartón", "Qué hago con las pilas", "En qué contenedor va el vidrio", "Cómo reciclo las latas", "Las bolsas plásticas se reciclan", "Dónde va el papel", "Es reciclable el duroport", "Qué hago con el aceite usado", "Cómo desecho un celular viejo", "Dónde boto las cáscaras", "Qué hago con medicinas vencidas", "En qué basurero va", "Cómo separo el plástico", "La caja de pizza se recicla", "Puedo reciclar ropa vieja", "Dónde van los pañales", "Tengo unas latas de gaseosa", "Tengo una botella", "Qué hago con un cargador que ya no sirve", "Es reciclable", "Se puede reciclar", "Cómo se recicla", "Qué hago con esto", "Dónde lo tiro"],
+            "respuestas": [
+                "Claro, te ayudo. ¿Qué material es? Escríbelo o elige una opción.",
+                "Con gusto. Dime qué objeto es, por ejemplo «botella», «lata» o «pilas», o elige una opción."
+            ]
+        },
+        {
+            "etiqueta": "puntos",
+            "patrones": ["Dónde reciclo", "Dónde lo llevo", "Dónde llevarlo", "Puntos de recolección", "Puntos de acopio", "Centro de acopio cerca", "Dónde hay un punto de reciclaje", "Dónde puedo llevar mis residuos", "Hay un lugar para reciclar cerca", "Dónde dejo las pilas", "Ubicación de los centros de reciclaje", "Dónde queda el punto más cercano", "Lugares que reciben reciclaje", "Dónde entrego el aceite", "Punto cercano", "Ver puntos", "Mapa de puntos"],
+            "respuestas": ["Estos son los puntos de recolección registrados."]
+        },
+        {
+            "etiqueta": "separacion",
+            "patrones": ["Cómo separo la basura", "Cómo separar los residuos en casa", "Colores de los contenedores", "Qué color de basurero uso", "Cómo clasifico la basura", "Separar en casa", "Separación de residuos", "Qué va en cada contenedor", "Cuántos botes de basura necesito", "Guía de separación"],
+            "respuestas": [
+                "Para separar en casa no necesitas mucho, con cuatro recipientes basta:\n\n*Amarillo:* plástico y metal, limpios y aplastados\n*Azul:* papel y cartón, secos y sin grasa\n*Verde:* vidrio, sin tapas\n*Café:* orgánico, restos de comida y jardín\n\nLo que no se recicla va a la basura común. Las pilas, el aceite, los electrónicos y las medicinas se guardan aparte y se llevan a un punto especial."
+            ]
+        },
+        {
+            "etiqueta": "reutilizar",
+            "patrones": ["Cómo reutilizo", "Ideas para reutilizar", "Ideas para reusar", "Cómo reutilizarlo", "Qué puedo hacer con botellas viejas", "Manualidades con material reciclado", "Darle otro uso", "Segunda vida a mis cosas", "Cómo hago compost", "Reutilizar frascos", "Reusar", "Qué hago con cajas de cartón para no botarlas"],
+            "respuestas": [
+                "Reutilizar es todavía mejor que reciclar. Algunas ideas:\n• Frascos de vidrio para guardar granos o especias\n• Botellas plásticas como macetas\n• Cajas de cartón como organizadores\n• Ropa vieja como trapos de limpieza\n• Cáscaras para hacer compost\n\nDime un material y te doy ideas más concretas."
+            ]
+        },
+        {
+            "etiqueta": "reducir",
+            "patrones": ["Cómo reduzco mi basura", "Consejos para cuidar el medio ambiente", "Cómo genero menos residuos", "Tips ecológicos", "Consejos de reciclaje", "Qué puedo hacer por el planeta", "Cómo contamino menos", "Dame un consejo", "Basura cero"],
+            "respuestas": [
+                "Lo mejor es no generar el residuo desde el inicio:\n• Lleva tu bolsa de tela al súper\n• Usa termo en lugar de vasos desechables\n• Compra a granel o en envases grandes\n• Repara antes de reemplazar\n• Rechaza pajillas y cubiertos desechables\n\nCon uno o dos de estos hábitos ya se nota la diferencia."
+            ]
+        },
+        {
+            "etiqueta": "importancia",
+            "patrones": ["Por qué reciclar", "Para qué sirve reciclar", "Beneficios del reciclaje", "Es importante reciclar", "Qué pasa si no reciclo", "Por qué separar la basura", "Qué es reciclar", "De qué sirve reciclar"],
+            "respuestas": [
+                "Reciclar evita que los residuos terminen en ríos, quebradas y el mar, ahorra energía y materia prima, y alarga la vida de los rellenos sanitarios. Por ejemplo, reciclar una lata de aluminio ahorra cerca del 95 % de la energía que se necesita para fabricar una nueva."
+            ]
+        },
+        {
+            "etiqueta": "especiales",
+            "patrones": ["Residuos peligrosos", "Residuos especiales", "Qué son los residuos especiales", "Basura peligrosa", "Desechos tóxicos", "Qué no puedo tirar a la basura", "Residuos que contaminan"],
+            "respuestas": [
+                "Los *residuos especiales* no van a la basura común porque contaminan el agua y el suelo: pilas y baterías, aceite de cocina usado, electrónicos y medicamentos. Elige uno para ver cómo manejarlo."
+            ]
+        },
+        {
+            "etiqueta": "whatsapp",
+            "patrones": ["Tienen WhatsApp", "Puedo hablar por WhatsApp", "Quiero seguir en WhatsApp", "Número de WhatsApp", "Contacto", "Cómo los contacto", "Hablar por el celular"],
+            "respuestas": [
+                "¡Claro! También estoy en WhatsApp. Toca «Seguir en WhatsApp» y continuamos por ahí."
+            ]
+        }
+    ]
+}

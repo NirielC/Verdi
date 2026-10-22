@@ -1,0 +1,96 @@
+/* Tokens de ReVerde: blanco, verde bosque como único color de marca y fotos reales */
+:root {
+    --fondo: #FFFFFF;
+    --superficie: #F5F7F4;
+    --superficie-2: #EEF3EE;
+    --linea: #E3E8E2;
+    --tinta: #17211B;
+    --tinta-suave: #5D6B62;
+    --verde: #1F4D36;
+    --verde-hover: #2B6447;
+    --verde-claro: #E4EEE6;
+    --alerta: #B9472E;
+    --alerta-claro: #FBEAE5;
+    --whatsapp: #1FA855;
+
+    /* Nombres usados por el panel de administración */
+    --bosque: var(--verde);
+    --bosque-hondo: #173B29;
+    --bosque-suave: var(--verde-hover);
+    --salvia: var(--verde-claro);
+    --salvia-media: var(--superficie);
+    --salvia-clara: var(--superficie-2);
+    --papel: var(--fondo);
+    --coral: var(--alerta);
+    --coral-claro: var(--alerta-claro);
+
+    --fuente: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+    --display: var(--fuente);
+    --ui: var(--fuente);
+
+    --radio-s: 8px;
+    --radio-m: 14px;
+    --radio-l: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--fuente);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--tinta);
+    background: var(--fondo);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--tinta);
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .7rem 1.2rem;
+    border: 1px solid var(--verde);
+    border-radius: 10px;
+    background: var(--verde);
+    color: #fff;
+    font-weight: 600;
+    font-size: .95rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+.boton:hover { background: var(--verde-hover); border-color: var(--verde-hover); }
+.boton-claro { background: var(--fondo); color: var(--verde); border-color: var(--linea); }
+.boton-claro:hover { background: var(--superficie); border-color: var(--verde); }
+.boton-whatsapp { background: var(--fondo); color: var(--tinta); border-color: var(--linea); }
+.boton-whatsapp:hover { background: var(--superficie); border-color: var(--whatsapp); }
+.boton-whatsapp svg { width: 18px; height: 18px; fill: var(--whatsapp); }
+
+.visualmente-oculto {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

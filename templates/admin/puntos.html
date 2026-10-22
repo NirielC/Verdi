@@ -1,0 +1,72 @@
+{% extends 'admin/base_admin.html' %}
+{% block titulo %}Puntos de acopio{% endblock %}
+{% block contenido %}
+<header class="admin-encabezado">
+    <h1>Puntos de acopio</h1>
+</header>
+
+<div class="puntos-admin">
+    <section class="tablero">
+        <h2>{{ 'Editar punto' if editar else 'Nuevo punto' }}</h2>
+        <form class="formulario" method="post" action="{{ url_for('guardar_punto') }}">
+            {% if editar %}<input type="hidden" name="id" value="{{ editar.id }}">{% endif %}
+            <label>Nombre <input name="nombre" required maxlength="100" value="{{ editar.nombre if editar }}"></label>
+            <label>Dirección <input name="direccion" required maxlength="200" value="{{ editar.direccion if editar }}"></label>
+            <div class="dos-columnas">
+                <label>Municipio <input name="municipio" required maxlength="60" value="{{ editar.municipio if editar }}"></label>
+                <label>Teléfono <input name="telefono" maxlength="20" value="{{ (editar.telefono or '') if editar }}"></label>
+            </div>
+            <div class="dos-columnas">
+                <label>Latitud <input name="latitud" required inputmode="decimal" placeholder="13.6989" value="{{ editar.latitud if editar }}"></label>
+                <label>Longitud <input name="longitud" required inputmode="decimal" placeholder="-89.1914" value="{{ editar.longitud if editar }}"></label>
+            </div>
+            <label>Horario <input name="horario" required maxlength="100" placeholder="Lun a vie, 8:00 a 16:00" value="{{ editar.horario if editar }}"></label>
+            <fieldset>
+                <legend>Materiales que recibe</legend>
+                {% set elegidos = editar.materiales.split(',') if editar else [] %}
+                <div class="casillas">
+                {% for m in materiales if m.clave != 'comun' %}
+                    <label class="casilla"><input type="checkbox" name="materiales" value="{{ m.clave }}" {% if m.clave in elegidos %}checked{% endif %}>
+                        <span class="punto-color" style="background: {{ m.color }}"></span>{{ m.nombre }}</label>
+                {% endfor %}
+                </div>
+            </fieldset>
+            <p class="ayuda">Para sacar la latitud y longitud: clic derecho sobre el lugar en Google Maps y copia los números.</p>
+            <div class="filtros-acciones">
+                <button class="boton" type="submit">{{ 'Guardar cambios' if editar else 'Agregar punto' }}</button>
+                {% if editar %}<a href="{{ url_for('admin_puntos') }}">Cancelar</a>{% endif %}
+            </div>
+        </form>
+    </section>
+
+    <section class="tablero">
+        <h2>{{ puntos|length }} puntos registrados</h2>
+        <ul class="lista-puntos-admin">
+        {% for p in puntos %}
+            <li class="{% if not p.activo %}inactivo{% endif %}">
+                <div>
+                    <h3>{{ p.nombre }}{% if not p.activo %} <small>(oculto)</small>{% endif %}</h3>
+                    <p>{{ p.direccion }}, {{ p.municipio }}</p>
+                    <p>{{ p.horario }}{% if p.telefono %} · {{ p.telefono }}{% endif %}</p>
+                    <div class="punto-materiales">
+                    {% for c in p.lista_materiales %}
+                        {% for m in materiales if m.clave == c %}<span class="chip" style="--color: {{ m.color }}">{{ m.nombre }}</span>{% endfor %}
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="acciones">
+                    <a class="icono" href="{{ url_for('admin_puntos', editar=p.id) }}" title="Editar">✎</a>
+                    <form method="post" action="{{ url_for('estado_punto', id_punto=p.id) }}">
+                        <button class="icono" type="submit" title="{{ 'Ocultar del sitio' if p.activo else 'Mostrar en el sitio' }}">{{ '◐' if p.activo else '●' }}</button>
+                    </form>
+                    <form method="post" action="{{ url_for('eliminar_punto', id_punto=p.id) }}"
+                          onsubmit="return confirm('¿Eliminar {{ p.nombre }}? No se puede deshacer.')">
+                        <button class="icono icono-peligro" type="submit" title="Eliminar">✕</button>
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}
